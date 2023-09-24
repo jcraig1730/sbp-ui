@@ -21,7 +21,7 @@ const HeroWithBgImage = () => {
 
         <div className=" hero-overlay bg-accent bg-opacity-20 p-4 h-fit relative top-48">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-secondary">
-            Capture Life's
+            Capture Life&apos;s
           </h1>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-secondary text-right">
             Precious Moments

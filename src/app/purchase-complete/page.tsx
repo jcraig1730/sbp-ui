@@ -6,11 +6,7 @@ import { useEffect, useState } from "react";
 
 const PurchaseCompletePage = () => {
   const query = useSearchParams();
-  const paymentIntent = query.get("payment_intent");
-  const paymentIntentClientSecret = query.get("payment_intent_client_secret");
-  const redirectStatus = query.get("redirect_status");
   const start = query.get("start");
-
   const pkg = query.get("package") as
     | "package 1"
     | "package 2"
@@ -19,19 +15,15 @@ const PurchaseCompletePage = () => {
   const type = query.get("type") as "infant" | "standard" | "wedding";
 
   const [appointmentCreated, setAppointmentCreated] = useState(false);
-  const [pageData, setPageData] = useState({
-    start: "",
-    description: "",
-  });
 
   useEffect(() => {
     (async () => {
-      const result = await createAppointment({
+      await createAppointment({
         start: new Date(start!).toString(),
         summary: pkg!,
         type: type!,
       });
-      setPageData(result);
+
       setAppointmentCreated(true);
     })();
   }, [pkg, start, type]);
@@ -53,9 +45,9 @@ const PurchaseCompletePage = () => {
 
       <p className="text-lg mb-4">Get Ready to Shine!✨</p>
       <p className="mb-4">
-        Hello there! We're thrilled to let you know that your photo shoot
-        appointment has been successfully booked. We can't wait to capture your
-        special moments and turn them into lasting memories. 📸
+        Hello there! We&apos;re thrilled to let you know that your photo shoot
+        appointment has been successfully booked. We can&apos;t wait to capture
+        your special moments and turn them into lasting memories. 📸
       </p>
 
       <div className="bg-primary p-4 rounded-md mb-4 flex justify-center">
@@ -73,12 +65,13 @@ const PurchaseCompletePage = () => {
       <p className="mb-4">
         Tip: Wear your favorite outfit, bring along any props that are
         meaningful to you, and most importantly, wear your beautiful smile.
-        Let's create magic together!
+        Let&apos;s create magic together!
       </p>
 
       <p className="mb-4">
-        Remember, photos aren't just pictures; they're moments frozen in time.
-        We're honored to be a part of your journey. Prepare to be dazzled!
+        Remember, photos aren&apos;t just pictures; they&apos;re moments frozen
+        in time. We&apos;re honored to be a part of your journey. Prepare to be
+        dazzled!
       </p>
 
       <h2 className="text-xl font-semibold mb-4 text-center">
@@ -86,13 +79,13 @@ const PurchaseCompletePage = () => {
       </h2>
       <p>
         If you have any questions or special requests before the big day, feel
-        free to reach out. We're here to make this experience unforgettable for
-        you.
+        free to reach out. We&apos;re here to make this experience unforgettable
+        for you.
       </p>
 
       <div className="mt-6">
         <p className="text-center">
-          See you soon! Let's make memories to cherish forever!
+          See you soon! Let&apos;s make memories to cherish forever!
         </p>
       </div>
     </div>

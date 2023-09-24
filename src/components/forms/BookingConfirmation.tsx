@@ -1,5 +1,3 @@
-import { PackageCardProps } from "@/app/pricing/packageCard";
-
 interface BookingConfirmationProps {
   package: string;
   date: string;
@@ -81,5 +79,4 @@ const packageInfo = [
   },
 ];
 
-const result = packageInfo.find((p) => p.name === "Package 1");
 export default BookingConfirmation;

@@ -1,12 +1,9 @@
 import Navbar from "@/components/navigation/navbar";
 import "./globals.css";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import { Providers } from "@/redux/providers";
 import Footer from "@/components/footer/Footer";
 import Toast from "@/components/toasts/Toast";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Create Next App",

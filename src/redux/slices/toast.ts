@@ -1,4 +1,3 @@
-import { User } from "@/api/dtoTypes";
 import { createSlice } from "@reduxjs/toolkit";
 
 export interface ToastI {

@@ -3,6 +3,7 @@
 import { verifyToken } from "@/api";
 import { loginUser } from "@/redux/slices/auth";
 import { RootState } from "@/redux/store";
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -45,9 +46,11 @@ const AccountManager = () => {
       <div className={"flex items-center btn btn-ghost"}>
         <div>{authData.user?.profile?.firstName}</div>
         <label tabIndex={0} className="avatar">
-          <div className="w-8 rounded-full">
-            <img
+          <div className="w-8 rounded-full relative">
+            <Image
               alt={"avatar"}
+              fill
+              className="object-contain"
               src="https://alumni.engineering.utoronto.ca/files/2022/05/Avatar-Placeholder-400x400-1.jpg"
             />
           </div>

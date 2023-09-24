@@ -1,12 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import axios from "axios";
 import { Elements, useElements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import BookPage from "./BookPage";
-import { Provider, useDispatch, useSelector } from "react-redux";
-import store, { RootState } from "@/redux/store";
+import { Provider, useDispatch } from "react-redux";
+import store from "@/redux/store";
 import { useRouter, useSearchParams } from "next/navigation";
 import { verifyToken } from "@/api";
 import { addToast } from "@/redux/slices/toast";
@@ -40,8 +40,6 @@ const BookWrapper = (props: {
 
   const [processing, setProcessing] = useState(false);
 
-  const authState = useSelector((state: RootState) => state.auth);
-
   const router = useRouter();
 
   const elements = useElements();
@@ -66,7 +64,7 @@ const BookWrapper = (props: {
       const userData = await verifyToken();
       if (!userData.email) router.push("/login");
       elements!.submit();
-      const result = (await stripePromise)?.confirmPayment({
+      (await stripePromise)?.confirmPayment({
         clientSecret: props.intent!.clientSecret,
         elements: elements || undefined,
         confirmParams: {
@@ -111,14 +109,17 @@ const ElementWrapper = () => {
   const [loading, setLoading] = useState(true);
   const searchParams = useSearchParams();
 
-  const getIntent = async () =>
-    await axios.post(
-      "http://localhost:3000/payments",
-      {
-        description: searchParams.get("package")?.toLowerCase(),
-      },
-      { withCredentials: true, headers: { Authorization: document.cookie } }
-    );
+  const getIntent = useCallback(
+    async () =>
+      await axios.post(
+        "http://localhost:3000/payments",
+        {
+          description: searchParams.get("package")?.toLowerCase(),
+        },
+        { withCredentials: true, headers: { Authorization: document.cookie } }
+      ),
+    [searchParams]
+  );
 
   const updateIntent = async (id: string, description: string) => {
     const result = await axios.put(
@@ -160,7 +161,7 @@ const ElementWrapper = () => {
         router.push("/register");
       }
     })();
-  }, []);
+  }, [dispatch, getIntent, router]);
   if (loading)
     return (
       <div className="h-[90vh] w-full flex items-center justify-center">

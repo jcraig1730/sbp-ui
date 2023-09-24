@@ -1,12 +1,9 @@
 "use client";
 
-import ProfileForm from "@/components/forms/ProfileForm";
 import UserRegisterForm from "@/components/forms/UserRegisterForm";
 import axios from "axios";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
-
-import { useState } from "react";
+import { MouseEvent, useState } from "react";
 
 const Register = () => {
   const [data, setData] = useState({
@@ -24,7 +21,7 @@ const Register = () => {
 
   const router = useRouter();
 
-  const registerUser = async (e: any) => {
+  const registerUser = async (e: MouseEvent) => {
     e.preventDefault();
     if (data.password !== data.passwordConfirm) {
       return;

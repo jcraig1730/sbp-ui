@@ -2,6 +2,7 @@
 
 import StandardPageWrapper from "@/components/pageWrappers/StandardPageWrapper";
 import axios from "axios";
+import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
@@ -21,11 +22,14 @@ const Login = () => {
           href="#"
           className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white"
         >
-          <img
-            className="w-32 h-32 mr-2"
-            src="/shelby_boldon_logo.svg"
-            alt="logo"
-          />
+          <div className="relative mr-2 w-32 h-32">
+            <Image
+              fill
+              className="object-contain"
+              src="/shelby_boldon_logo.svg"
+              alt="logo"
+            />
+          </div>
         </a>
         <div className="w-full  rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0 bg-accent">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">

@@ -1,13 +1,7 @@
 "use client";
 
 import { RootState } from "@/redux/store";
-import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-
-interface ToastProps {
-  type: "success" | "error" | "info";
-  message: string;
-}
 
 const Toast = () => {
   const toastState = useSelector((state: RootState) => state.toast);

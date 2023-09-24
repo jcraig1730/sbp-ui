@@ -3,7 +3,9 @@ import axios from "axios";
 import { DayPicker } from "react-day-picker";
 import "react-day-picker/dist/style.css";
 
-type OpenSlots = { hour: number; minute: number; formatted: string }[];
+type OpenSlot = { hour: number; minute: number; formatted: string };
+
+type OpenSlots = OpenSlot[];
 
 interface Schedule {
   [year: number]: {
@@ -77,7 +79,7 @@ function SelectDate(props: SelectDateProps) {
     ));
   };
 
-  const handleTimeSlotClick = (slot: any) => {
+  const handleTimeSlotClick = (slot: OpenSlot) => {
     const appointment = new Date(selectedDay!);
     appointment.setHours(slot.hour, slot.minute);
     props.selectDate(appointment);

@@ -1,22 +1,17 @@
 "use client";
-import {
-  authenticateMaster,
-  createAlbum,
-  uploadPhoto,
-  verifyToken,
-} from "@/api";
+import { authenticateMaster, createAlbum, uploadPhoto } from "@/api";
 import { Album, User } from "@/api/dtoTypes";
 import StandardPageWrapper from "@/components/pageWrappers/StandardPageWrapper";
 import { addToast } from "@/redux/slices/toast";
 import axios from "axios";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React, { FormEventHandler, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { v4 } from "uuid";
 
 const ImageUploader = () => {
-  const [file, setFile] = useState(null);
+  const [file, setFile] = useState<File | null>(null);
   const [imagePreviewUrl, setImagePreviewUrl] = useState("");
   const [customer, setCustomer] = useState<string>();
   const [albums, setAlbums] = useState<Album[]>([]);
@@ -46,13 +41,14 @@ const ImageUploader = () => {
         dispatch(addToast({ id: v4(), message: "Not Allowed", type: "error" }));
       }
     })();
-  }, []);
+  }, [dispatch, router]);
 
-  const handleImageChange = (e: any) => {
+  const handleImageChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
     e.preventDefault();
 
-    let reader = new FileReader();
-    let selectedFile = e.target.files[0];
+    const reader = new FileReader();
+    if (!e.target.files) return;
+    const selectedFile = e.target.files[0];
 
     reader.onloadend = () => {
       setFile(selectedFile);
@@ -65,7 +61,7 @@ const ImageUploader = () => {
     }
   };
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
     if (!file) {
       return;
@@ -126,7 +122,9 @@ const ImageUploader = () => {
                 Select Album
               </option>
               {albums.map((album) => (
-                <option value={album.id}>{album.name}</option>
+                <option value={album.id} key={album.id}>
+                  {album.name}
+                </option>
               ))}
             </select>
             <button
@@ -138,9 +136,7 @@ const ImageUploader = () => {
           </div>
 
           <input type="file" onChange={handleImageChange} />
-          <button type="submit" onClick={handleSubmit}>
-            Upload Image
-          </button>
+          <button type="submit">Upload Image</button>
         </form>
         {imagePreviewUrl && (
           <div className="relative w-1/2 h-[500px] mx-auto">

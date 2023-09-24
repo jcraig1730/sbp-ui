@@ -12,9 +12,11 @@ const PortfolioPhotoList = (props: PortfolioPhotoListProps) => {
   return (
     <div className="md:px-8 flex flex-wrap justify-between">
       {images.map((image) => (
-        <div className="md:basis-1/2 basis-full  h-[500px] p-1 relative">
+        <div
+          className="md:basis-1/2 basis-full  h-[500px] p-1 relative"
+          key={image}
+        >
           <Link
-            key={image}
             href={baseUrlForModal + image}
             shallow
             passHref

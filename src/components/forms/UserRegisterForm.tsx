@@ -1,7 +1,7 @@
 "use-client";
 
 import Link from "next/link";
-import { HTMLInputTypeAttribute, useState } from "react";
+import { HTMLInputTypeAttribute, MouseEvent, useState } from "react";
 
 interface UserRegisterFormProps {
   data: {
@@ -17,7 +17,9 @@ interface UserRegisterFormProps {
     phone: string;
   };
   setData: (key: string, value: string) => void;
-  submit: (e: any) => void;
+  submit: (
+    e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>
+  ) => Promise<void>;
 }
 
 const UserRegisterForm = (props: UserRegisterFormProps) => {

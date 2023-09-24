@@ -1,8 +1,7 @@
 "use client";
-import { Photo } from "@/api/dtoTypes";
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 interface ImageModalProps {
   returnUrl: string;

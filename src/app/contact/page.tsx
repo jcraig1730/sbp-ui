@@ -15,14 +15,11 @@ function ContactPage() {
     message: "",
   });
 
-  const [toastStatus, setToastStatus] = useState<{
-    show: boolean;
-    type: "success" | "error" | null;
-  }>({ show: false, type: null });
-
   const dispatch = useDispatch();
 
-  const handleChange = (e: any) => {
+  const handleChange: React.ChangeEventHandler<
+    HTMLTextAreaElement | HTMLInputElement
+  > = (e) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
@@ -30,24 +27,8 @@ function ContactPage() {
     });
   };
 
-  const showToast = (type: "success" | "error") => {
-    setToastStatus({ show: true, type });
-    setTimeout(() => {
-      setToastStatus({ show: false, type: null });
-    }, 5000);
-  };
-
-  const handleSubmit = async (e: any) => {
+  const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
-    // Here you would send the form data to your backend
-    // For example:
-    // await fetch('YOUR_BACKEND_ENDPOINT', {
-    //  method: 'POST',
-    //  body: JSON.stringify(formData),
-    //  headers: {
-    //    'Content-Type': 'application/json'
-    //  }
-    // });
     const result = await createContact({
       email: formData.email,
       text: formData.message,
@@ -159,21 +140,6 @@ function ContactPage() {
             </div>
           </div>
         </form>
-        {toastStatus.show && (
-          <div className="toast toast-top toast-center">
-            <div
-              className={`alert ${
-                toastStatus.type === "success" ? "alert-success" : "alert-error"
-              }`}
-            >
-              <span>
-                {toastStatus.type === "success"
-                  ? "Message sent!"
-                  : "There was a problem sending your message"}
-              </span>
-            </div>
-          </div>
-        )}
       </div>
     </StandardPageWrapper>
   );

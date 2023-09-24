@@ -18,10 +18,10 @@ const PackageHighlight = () => {
             Explore Our Photography Packages
           </h1>
           <p className="py-6">
-            Discover the Perfect Package for You! 📸 Whether you're celebrating
-            love, family, or individual milestones, we have tailored packages to
-            suit every special moment. Explore our options and find the one that
-            captures your story beautifully.
+            Discover the Perfect Package for You! 📸 Whether you&apos;re
+            celebrating love, family, or individual milestones, we have tailored
+            packages to suit every special moment. Explore our options and find
+            the one that captures your story beautifully.
           </p>
 
           <Link href="/pricing" passHref>

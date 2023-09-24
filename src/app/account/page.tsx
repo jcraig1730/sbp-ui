@@ -38,7 +38,7 @@ const AccountPage = () => {
       }
       setLoading(false);
     })();
-  }, []);
+  }, [dispatch, router]);
 
   if (loading)
     return (

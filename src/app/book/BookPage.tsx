@@ -3,8 +3,6 @@ import SelectDate from "@/components/forms/SelectDate";
 import SelectPackage from "@/components/forms/SelectPackage";
 import StandardPageWrapper from "@/components/pageWrappers/StandardPageWrapper";
 import PaymentForm from "@/components/payments/PaymentPlaceholder";
-import { Elements } from "@stripe/react-stripe-js";
-import { loadStripe } from "@stripe/stripe-js";
 
 interface BookPageProps {
   step: number;

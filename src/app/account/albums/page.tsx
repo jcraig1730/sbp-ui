@@ -5,7 +5,6 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import * as FileSaver from "file-saver";
 import { useEffect, useState } from "react";
-import { Photo } from "@/api/dtoTypes";
 import { verifyToken } from "@/api";
 import { loginUser } from "@/redux/slices/auth";
 import { addToast } from "@/redux/slices/toast";
@@ -21,22 +20,10 @@ const AlbumPage = () => {
   const album = user?.albums.find(
     (a) => a.name.toLowerCase() === albumName?.toLowerCase()
   );
-  const [showImage, setShowImage] = useState(false);
-  const [imageToShow, setImageToShow] = useState<Photo>();
+
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
   const router = useRouter();
-
-  useEffect(() => {
-    if (showImage) {
-      document.body.classList.add("overflow-y-hidden");
-    } else {
-      document.body.classList.remove("overflow-y-hidden");
-    }
-    return () => {
-      document.body.classList.remove("overflow-y-hidden");
-    };
-  }, [showImage]);
 
   useEffect(() => {
     (async () => {
@@ -59,7 +46,7 @@ const AlbumPage = () => {
       }
       setLoading(false);
     })();
-  }, []);
+  }, [dispatch, router]);
 
   if (loading)
     return (
@@ -101,8 +88,6 @@ const AlbumPage = () => {
               </button>
               <button
                 onClick={() => {
-                  // setImageToShow(photo);
-                  // setShowImage(true);
                   router.push(
                     "/account/albums?album=" +
                       album.name +
@@ -120,6 +105,7 @@ const AlbumPage = () => {
         </div>
       ))}
       <ImageModalServerComponent
+        alt="album image"
         returnUrl={"/account/albums?album=" + album?.name}
       />
     </div>

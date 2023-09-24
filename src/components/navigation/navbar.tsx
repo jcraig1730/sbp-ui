@@ -2,12 +2,11 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import AccountManager from "./accountManager";
 
 const Navbar = () => {
   const handleClick = () => {
-    const elem = document.activeElement;
+    const elem = document.activeElement as HTMLElement;
     if (elem) {
       elem.blur();
     }

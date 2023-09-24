@@ -24,9 +24,9 @@ export default function Home() {
             </div>
             <div className="w-full md:w-2/4 relative p-0 md:p-4 text-center">
               <h3 className="text-2xl italic ">
-                "Photography is a way of feeling, of touching, of loving. What
-                you have caught on film is captured forever… It remembers little
-                things, long after you have forgotten everything."
+                &quot;Photography is a way of feeling, of touching, of loving.
+                What you have caught on film is captured forever… It remembers
+                little things, long after you have forgotten everything.&quot;
               </h3>
               <div className="text-xl">- Aaron Siskind</div>
             </div>
@@ -52,8 +52,8 @@ export default function Home() {
               className=" italic text-2xl md:text-4xl lg:text-5xl drop-shadow-2xl pt-5 w-[80vw] my-12 text-center"
               style={{ textShadow: "-25px -15px 8px #55555577 " }}
             >
-              "We take photos as a return ticket to a moment otherwise gone." -
-              Katie Thurmes
+              &quot;We take photos as a return ticket to a moment otherwise
+              gone.&quot; - Katie Thurmes
             </div>
             <Link passHref href="/portfolio/couples">
               <div className="bg-primary">
@@ -75,8 +75,8 @@ export default function Home() {
               className="italic text-2xl md:text-4xl lg:text-5xl drop-shadow-2xl pt-5 w-[80vw] my-12 text-right"
               style={{ textShadow: "-25px -15px 8px #55555577 " }}
             >
-              "Taking pictures is savoring life intensely, every hundredth of a
-              second." - Marc Riboud
+              &quot;Taking pictures is savoring life intensely, every hundredth
+              of a second.&quot; - Marc Riboud
             </div>
 
             <Link passHref href="/portfolio/portraits">

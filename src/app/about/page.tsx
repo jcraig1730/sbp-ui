@@ -6,7 +6,7 @@ const About = () => {
   return (
     <StandardPageWrapper title="About">
       <div className="px=8 lg:px-8  pt-3 line leading-10 text-lg space-y-12 max-w-[100vw] relative">
-        <span className="text-xl">Hi, I'm Shelby!</span>
+        <span className="text-xl">Hi, I&apos;m Shelby!</span>
         <br />
         <div className="relative w-[200px] h-[250px] float-left mr-2">
           <Image
@@ -17,7 +17,7 @@ const About = () => {
           />
         </div>
         <p className="text-accent">
-          I'm 27 years young and living the good life with my family in the
+          I&apos;m 27 years young and living the good life with my family in the
           peachy town of Warner Robins, Georgia. Born in sunny Tampa, Florida, I
           spent most of my childhood in a cozy little nook in Tennessee. I made
           my way back to Georgia in the summer of 2012, chasing my high school
@@ -38,28 +38,30 @@ const About = () => {
           />
         </div>
         <p>
-          Now, we're the proud parents of three delightful girls - Isabella,
-          Blaine, and Bryar Rose - who have perfected the art of turning our
-          house upside down in the cutest way possible. We're also wrangling a
-          small zoo with our pups Beau Beau, a mastiff who thinks he's a lap
-          dog; Sadie, a Lab mix with a serious fetch addiction; Winchester, a
-          Dachshund with a Napoleon complex; and Coco, our cat who's convinced
-          she's royalty.
+          Now, we&apos;re the proud parents of three delightful girls -
+          Isabella, Blaine, and Bryar Rose - who have perfected the art of
+          turning our house upside down in the cutest way possible. We&apos;re
+          also wrangling a small zoo with our pups Beau Beau, a mastiff who
+          thinks he&apos;s a lap dog; Sadie, a Lab mix with a serious fetch
+          addiction; Winchester, a Dachshund with a Napoleon complex; and Coco,
+          our cat who&apos;s convinced she&apos;s royalty.
         </p>
         <p>
-          In my free time, I'm either diving into the world of true crime shows
-          (don't worry, I've picked up a few detective skills), leveling up in
-          video games, or embarking on some wild adventure with the fam.
+          In my free time, I&apos;m either diving into the world of true crime
+          shows (don&apos;t worry, I&apos;ve picked up a few detective skills),
+          leveling up in video games, or embarking on some wild adventure with
+          the fam.
         </p>
         <p>
-          As a certified extrovert, I'm always ready for a chat! Whether it's
-          about the latest mystery I've "solved" or the high score I just beat,
-          there's never a dull moment. I've been capturing life's quirkiest and
-          most heartwarming moments for two years now, and I'm dreaming big. My
-          ultimate goal is to grow within photography so that, when I retire,
-          I'll leave behind a legacy of precious memories and a message to my
-          kids to chase their wildest dreams. Can't wait to hear from you and
-          create some picture-perfect memories together!
+          As a certified extrovert, I&apos;m always ready for a chat! Whether
+          it&apos;s about the latest mystery I&apos;ve &quot;solved&quot; or the
+          high score I just beat, there&apos;s never a dull moment. I&apos;ve
+          been capturing life&apos;s quirkiest and most heartwarming moments for
+          two years now, and I&apos;m dreaming big. My ultimate goal is to grow
+          within photography so that, when I retire, I&apos;ll leave behind a
+          legacy of precious memories and a message to my kids to chase their
+          wildest dreams. Can&apos;t wait to hear from you and create some
+          picture-perfect memories together!
         </p>
       </div>
 
