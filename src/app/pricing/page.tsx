@@ -1,3 +1,4 @@
+import StandardPageWrapper from "@/components/pageWrappers/StandardPageWrapper";
 import PackageCard, { PackageCardProps } from "./packageCard";
 
 const packages: PackageCardProps[] = [
@@ -60,14 +61,13 @@ const packages: PackageCardProps[] = [
 
 const Pricing = () => {
   return (
-    <div className="px-8 lg:px-28 py-14 text-accent">
-      <h1 className={"text-6xl text-accent pb-6"}>Packages</h1>
+    <StandardPageWrapper title="Packages">
       <div className="space-y-12 px-8">
         {packages.map((pkg) => (
           <PackageCard {...pkg} key={pkg.name} />
         ))}
       </div>
-    </div>
+    </StandardPageWrapper>
   );
 };
 

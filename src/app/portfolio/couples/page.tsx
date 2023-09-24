@@ -1,38 +1,23 @@
-import Link from "next/link";
 import dynamic from "next/dynamic";
+import PortfolioPhotoList from "@/components/photoDisplays/PortfolioPhotoList";
+import StandardPageWrapper from "@/components/pageWrappers/StandardPageWrapper";
 const ImageModalServerComponent = dynamic(
   () => import("@/components/modals/ImageModalServerComponent")
 );
 
 const CouplesPortfolio = () => {
   return (
-    <div className="px-8 lg:px-28 py-14 text-accent">
-      <h1 className={"text-6xl text-accent pb-6 "}>Couples Photos</h1>
-      <div className="md:px-8 grid grid-cols-1 md:grid-cols-2 space-y-4 space-x-4">
-        {images.map((image) => (
-          <Link
-            key={image}
-            href={"/portfolio/couples?image-url=" + image}
-            shallow
-            passHref
-            scroll={false}
-          >
-            <div
-              style={{
-                background: `url(${image})`,
-                height: "500px",
-                backgroundPosition: "center",
-                backgroundSize: "cover",
-                backgroundRepeat: "no-repeat",
-                marginTop: "16px",
-                marginLeft: "16px",
-              }}
-            />
-          </Link>
-        ))}
-      </div>
-      <ImageModalServerComponent returnUrl="/portfolio/couples" />
-    </div>
+    <StandardPageWrapper title={"Couples Photos"}>
+      <PortfolioPhotoList
+        baseUrlForModal="/portfolio/couples?image-url="
+        images={images}
+        portfolioTitle="Couples"
+      />
+      <ImageModalServerComponent
+        alt="couples portfolio image"
+        returnUrl="/portfolio/couples"
+      />
+    </StandardPageWrapper>
   );
 };
 
@@ -50,28 +35,5 @@ const images = [
   "http://images-pw.pixieset.com/elementfield/820368951/639A1686-3-d6444ff1.jpg",
   "http://images-pw.pixieset.com/elementfield/820368951/639A1688-2-79c8e9a2.jpg",
 ];
-
-interface ModalProps {
-  image: string;
-}
-
-const Modal = (props: ModalProps) => {
-  return (
-    <div>
-      <dialog
-        id="my_modal_2"
-        className={`modal${!!props.image ? " flex" : " hidden"}`}
-      >
-        <form method="dialog" className="modal-box">
-          <h3 className="font-bold text-lg">Hello!</h3>
-          <p className="py-4">Press ESC key or click outside to close</p>
-        </form>
-        <form method="dialog" className="modal-backdrop">
-          <button>close</button>
-        </form>
-      </dialog>
-    </div>
-  );
-};
 
 export default CouplesPortfolio;

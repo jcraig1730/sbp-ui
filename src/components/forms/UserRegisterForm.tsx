@@ -25,16 +25,6 @@ const UserRegisterForm = (props: UserRegisterFormProps) => {
   const [step, setStep] = useState(0);
   return (
     <div className="bg-accent flex flex-col items-center justify-center px-6 py-8 mx-auto  lg:py-0 h-screen ">
-      {/* <a
-        href="#"
-        className="bg-primary mt-4 w-full justify-center flex items-center mb-6 text-2xl font-semibold text-white"
-      >
-        <img
-          className="w-32 h-32 mr-2"
-          src="/shelby_boldon_logo.svg"
-          alt="logo"
-        />
-      </a> */}
       <div className="bg-accent rounded-lg shadow md:mt-0 flex xl:p-0 w-full">
         <div className="p-6 space-y-4 md:space-y-6 sm:p-8 w-full">
           <h1 className="text-xl font-bold leading-tight tracking-tight text-secondary md:text-2xl ">

@@ -1,6 +1,7 @@
 "use client";
 
 import { createContact } from "@/api";
+import StandardPageWrapper from "@/components/pageWrappers/StandardPageWrapper";
 import { addToast } from "@/redux/slices/toast";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
@@ -73,10 +74,7 @@ function ContactPage() {
   };
 
   return (
-    <div className=" px-8 lg:px-28 py-14 text-accent">
-      <h1 className={"text-6xl text-accent pb-6 justify-self-start"}>
-        Contact
-      </h1>
+    <StandardPageWrapper title="Contact">
       <div className="flex flex-col items-center bg-primary p-4 py-12 max-w-2xl m-auto rounded-xl">
         <h1 className="text-2xl font-bold mb-5">Contact Us</h1>
         <form className="w-full max-w-lg" onSubmit={handleSubmit}>
@@ -177,7 +175,7 @@ function ContactPage() {
           </div>
         )}
       </div>
-    </div>
+    </StandardPageWrapper>
   );
 }
 

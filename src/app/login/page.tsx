@@ -1,5 +1,6 @@
 "use client";
 
+import StandardPageWrapper from "@/components/pageWrappers/StandardPageWrapper";
 import axios from "axios";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
@@ -14,8 +15,7 @@ const Login = () => {
   const router = useRouter();
 
   return (
-    <div>
-      <h1 className={"text-6xl text-accent px-8 lg:px-28 pt-14"}>Login</h1>
+    <StandardPageWrapper title="Login">
       <div className="flex flex-col items-center  px-6  mx-auto md:h-screen lg:py-0  min-h-screen pb-12 lg:pb-36">
         <a
           href="#"
@@ -141,7 +141,7 @@ const Login = () => {
           </div>
         </div>
       </div>
-    </div>
+    </StandardPageWrapper>
   );
 };
 

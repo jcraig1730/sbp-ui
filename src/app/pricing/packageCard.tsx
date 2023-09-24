@@ -19,8 +19,7 @@ const PackageCard = (props: PackageCardProps) => {
           src={props.image}
           alt="sample photo"
           fill
-          objectFit="cover"
-          className="overflow-hidden"
+          className="overflow-hidden object-cover"
           placeholder="empty"
         />
       </figure>
@@ -37,8 +36,17 @@ const PackageCard = (props: PackageCardProps) => {
         {props.deliver && <p>{props.deliver}</p>}
         {props.price}
         <div className="card-actions justify-end">
-          <Link href={"/book" + "?package=" + props.name} passHref>
-            <button className="btn btn-accent">Book</button>
+          <Link
+            href={
+              props.name === "Wedding/Engagement"
+                ? "/contact"
+                : "/book" + "?package=" + props.name
+            }
+            passHref
+          >
+            <button className="btn btn-accent">
+              {props.name === "Wedding/Engagement" ? "Contact" : "Book"}
+            </button>
           </Link>
         </div>
       </div>

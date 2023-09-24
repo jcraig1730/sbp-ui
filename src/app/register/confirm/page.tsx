@@ -9,14 +9,6 @@ const CheckEmailPage = () => {
           We've sent a login link to your email. Please check your inbox and
           follow the link to log in.
         </p>
-        {/* <img
-          src="https://via.placeholder.com/150"
-          alt="Email Illustration"
-          className="mx-auto mb-4"
-        />
-        <button className="bg-blue-500 text-white py-2 px-4 rounded-full transition duration-300 hover:bg-blue-700">
-          Resend Email
-        </button> */}
       </div>
     </div>
   );

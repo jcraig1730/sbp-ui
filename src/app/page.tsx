@@ -19,8 +19,7 @@ export default function Home() {
                 }
                 alt="adorable child raising his hands"
                 fill
-                objectFit="cover"
-                className="overflow-hidden rounded-md"
+                className="overflow-hidden rounded-md object-cover"
               />
             </div>
             <div className="w-full md:w-2/4 relative p-0 md:p-4 text-center">
@@ -66,7 +65,7 @@ export default function Home() {
                   Couples
                 </h2>
 
-                <div>
+                <div className="w-full">
                   <GridPhotoDivider images={couplePhotos} />
                 </div>
               </div>
@@ -106,73 +105,73 @@ export default function Home() {
 
 const familyPhotos = [
   {
-    src: "https://images-pw.pixieset.com/elementfield/299268951/639A9347-8ccdb338.jpg",
+    src: "https://res.cloudinary.com/dfnp8pdyk/image/upload/v1695338517/nrifzk1kr6t3nujbb5tq.jpg",
     alt: "portfolio image",
   },
   {
-    src: "https://images-pw.pixieset.com/elementfield/299268951/639A6083-1-d11dcffd.jpg",
+    src: "https://res.cloudinary.com/dfnp8pdyk/image/upload/v1695338518/nsqzfavsnbep0rluypvd.jpg",
     alt: "portfolio image",
   },
   {
-    src: "https://images-pw.pixieset.com/elementfield/299268951/Tweaks17-5743331d.jpg",
+    src: "https://res.cloudinary.com/dfnp8pdyk/image/upload/v1695338519/ibckiy4yez7j3ch77zch.jpg",
     alt: "portfolio image",
   },
   {
-    src: "https://images-pw.pixieset.com/elementfield/299268951/Tweaks23-43ea3dc0.jpg",
+    src: "https://res.cloudinary.com/dfnp8pdyk/image/upload/v1695338519/rwcjkphohawornjotjez.jpg",
     alt: "portfolio image",
   },
   {
-    src: "https://images-pw.pixieset.com/elementfield/299268951/639A6322-0679105f.jpg",
+    src: "https://res.cloudinary.com/dfnp8pdyk/image/upload/v1695338520/z4y3l8zoplgdicdoskke.jpg",
     alt: "portfolio image",
   },
   {
-    src: "https://images-pw.pixieset.com/elementfield/299268951/639A6510-1-cb7469f3.jpg",
+    src: "https://res.cloudinary.com/dfnp8pdyk/image/upload/v1695338520/pqti9ugqd0nfz8fxnlpo.jpg",
     alt: "portfolio image",
   },
   {
-    src: "https://images-pw.pixieset.com/elementfield/299268951/639A0138-18ff3b8d.jpg",
+    src: "https://res.cloudinary.com/dfnp8pdyk/image/upload/v1695338521/fsgqab5vy9f5c8o3zfl5.jpg",
     alt: "portfolio image",
   },
   {
-    src: "https://images-pw.pixieset.com/elementfield/299268951/639A6592-1-9de1f7cf.jpg",
+    src: "https://res.cloudinary.com/dfnp8pdyk/image/upload/v1695338522/vr4lmqtz54j9ycfqcphw.jpg",
     alt: "portfolio image",
   },
 ];
 
 const couplePhotos = [
   {
-    src: "https://images-pw.pixieset.com/elementfield/820368951/639A1686-3-d6444ff1.jpg",
+    src: "https://res.cloudinary.com/dfnp8pdyk/image/upload/v1695340063/woce5asyg8wzpdjmwdkj.jpg",
     alt: "couple sample photo",
   },
   {
-    src: "https://images-pw.pixieset.com/elementfield/820368951/639A8849-09bac570.jpg",
+    src: "https://res.cloudinary.com/dfnp8pdyk/image/upload/v1695340064/bqyerkbnh4orh4unp08w.jpg",
     alt: "couple sample photo",
   },
   {
-    src: "https://images-pw.pixieset.com/elementfield/820368951/639A6767-3d0201ab.jpg",
+    src: "https://res.cloudinary.com/dfnp8pdyk/image/upload/v1695340064/gticmgkzj6qkixtf5age.jpg",
     alt: "couple sample photo",
   },
   {
-    src: "https://images-pw.pixieset.com/elementfield/820368951/639A9700-b8687344.jpg",
+    src: "https://res.cloudinary.com/dfnp8pdyk/image/upload/v1695340065/gzo8chedtvb6h6douogz.jpg",
     alt: "couple sample photo",
   },
 ];
 
 const portraitPhotos = [
   {
-    src: "https://images-pw.pixieset.com/elementfield/799268951/639A8076-2-2-1-63eb9314.jpg",
+    src: "https://res.cloudinary.com/dfnp8pdyk/image/upload/v1695340066/dtags9ueffit4bhot48u.jpg",
     alt: "portrait sample photo",
   },
   {
-    src: "https://images-pw.pixieset.com/elementfield/799268951/Just_Tiff2-9bcf3b69.jpg",
+    src: "https://res.cloudinary.com/dfnp8pdyk/image/upload/v1695340066/maerbdvgvs6ds5f9x0vp.jpg",
     alt: "portrait sample photo",
   },
   {
-    src: "https://images-pw.pixieset.com/elementfield/799268951/639A8358-2-1-dd67a809.jpg",
+    src: "https://res.cloudinary.com/dfnp8pdyk/image/upload/v1695340067/vennfa7ifgix7g0apoky.jpg",
     alt: "portrait sample photo",
   },
   {
-    src: "https://images-pw.pixieset.com/elementfield/799268951/639A7866-2-1-90c5ca48.jpg",
+    src: "https://res.cloudinary.com/dfnp8pdyk/image/upload/v1695340068/plohlhesugznlprzvell.jpg",
     alt: "portrait sample photo",
   },
 ];

@@ -81,7 +81,7 @@ const AlbumPage = () => {
           <div className="relative h-[70vh] md:h-screen w-full md:w-3/4">
             <Image
               fill
-              objectFit="cover"
+              className="object-cover"
               alt={album.name + " photo"}
               src={photo.url}
             />

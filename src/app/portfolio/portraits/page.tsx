@@ -1,39 +1,23 @@
+import StandardPageWrapper from "@/components/pageWrappers/StandardPageWrapper";
+import PortfolioPhotoList from "@/components/photoDisplays/PortfolioPhotoList";
 import dynamic from "next/dynamic";
-import Link from "next/link";
 const ImageModalServerComponent = dynamic(
   () => import("@/components/modals/ImageModalServerComponent")
 );
 
 const PortraitPortfolio = () => {
   return (
-    <div className="px-8 lg:px-28 py-14 text-accent">
-      <h1 className={"text-6xl text-accent pb-6 "}>Portraits</h1>
-      <div className="md:px-8 grid grid-cols-1 md:grid-cols-2 space-y-4 space-x-4">
-        {images.map((image) => (
-          <Link
-            key={image}
-            href={"/portfolio/portraits?image-url=" + image}
-            shallow
-            passHref
-            scroll={false}
-          >
-            <div
-              style={{
-                background: `url(${image})`,
-                // width: "95%",
-                height: "500px",
-                backgroundPosition: "center",
-                backgroundSize: "cover",
-                backgroundRepeat: "no-repeat",
-                marginTop: "16px",
-                marginLeft: "16px",
-              }}
-            />
-          </Link>
-        ))}
-      </div>
-      <ImageModalServerComponent returnUrl="/portfolio/portraits" />
-    </div>
+    <StandardPageWrapper title="Portraits">
+      <PortfolioPhotoList
+        images={images}
+        baseUrlForModal="/portfolio/portraits?image-url="
+        portfolioTitle="Portraits"
+      />
+      <ImageModalServerComponent
+        alt="portrait portfolio image"
+        returnUrl="/portfolio/portraits"
+      />
+    </StandardPageWrapper>
   );
 };
 

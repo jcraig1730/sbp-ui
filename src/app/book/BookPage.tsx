@@ -1,6 +1,7 @@
 import BookingConfirmation from "@/components/forms/BookingConfirmation";
 import SelectDate from "@/components/forms/SelectDate";
 import SelectPackage from "@/components/forms/SelectPackage";
+import StandardPageWrapper from "@/components/pageWrappers/StandardPageWrapper";
 import PaymentForm from "@/components/payments/PaymentPlaceholder";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
@@ -30,8 +31,7 @@ const BookPage = (props: BookPageProps) => {
   } = props;
 
   return (
-    <div className="px-8 lg:px-28 py-14 text-accent">
-      <h1 className={"text-6xl text-accent pb-6 "}>Book</h1>
+    <StandardPageWrapper title="Book">
       <div className="flex flex-col">
         <ul className="steps sm:steps mb-12">
           <li className={`step ${step >= 1 ? "step-accent" : "step-primary"}`}>
@@ -84,13 +84,18 @@ const BookPage = (props: BookPageProps) => {
           <button
             className="btn btn-primary"
             onClick={nextClick}
-            disabled={props.processing}
+            disabled={
+              props.processing ||
+              (step === 0 && !selectedPackage) ||
+              (step === 1 && !selectedDate) ||
+              (step === 2 && !props.paymentFormComplete)
+            }
           >
             {step < 3 ? "Next" : "Create Appointment"}
           </button>
         )}
       </div>
-    </div>
+    </StandardPageWrapper>
   );
 };
 

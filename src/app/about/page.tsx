@@ -1,19 +1,22 @@
+import StandardPageWrapper from "@/components/pageWrappers/StandardPageWrapper";
+import Image from "next/image";
 import Link from "next/link";
 
 const About = () => {
   return (
-    <div className={"px-8 lg:px-28 py-14 text-accent"}>
-      <h1 className={"text-6xl text-accent pb-6 "}>About</h1>
-      <div className="px=8 lg:px-8  pt-3 line leading-10 text-lg space-y-12 max-w-[100vw]">
+    <StandardPageWrapper title="About">
+      <div className="px=8 lg:px-8  pt-3 line leading-10 text-lg space-y-12 max-w-[100vw] relative">
         <span className="text-xl">Hi, I'm Shelby!</span>
         <br />
-        <p className="text-accent">
-          <img
+        <div className="relative w-[200px] h-[250px] float-left mr-2">
+          <Image
             src={"/shelby.jpeg"}
-            style={{ maxHeight: "250px" }}
-            className="float-left pr-3"
+            fill
+            className="object-contain"
             alt="Shelby"
           />
+        </div>
+        <p className="text-accent">
           I'm 27 years young and living the good life with my family in the
           peachy town of Warner Robins, Georgia. Born in sunny Tampa, Florida, I
           spent most of my childhood in a cozy little nook in Tennessee. I made
@@ -22,16 +25,18 @@ const About = () => {
           16, even though we were partners in crime for years before that. In
           June 2015, I joyously became Mrs. Drew, and not long after, we heard
           the pitter-patter of tiny feet in our home.
-          <img
+        </p>
+        <div className="relative w-full lg:w-[33vw] h-[600px] lg:ml-2 float-right flex justify-center">
+          <Image
             src={
               "https://images-pw.pixieset.com/elementfield/831672161/IMG_4017-c1a0eec0.jpg"
             }
-            width="auto"
+            fill
             alt={"Shelby with her family"}
             style={{ maxHeight: "600px" }}
-            className="float-right"
+            className="object-cover"
           />
-        </p>
+        </div>
         <p>
           Now, we're the proud parents of three delightful girls - Isabella,
           Blaine, and Bryar Rose - who have perfected the art of turning our
@@ -59,13 +64,19 @@ const About = () => {
       </div>
 
       <div className="flex flex-col md:flex-row items-center">
-        <img style={{ maxWidth: "100%" }} src="/shelby_boldon_logo.png" />
+        <Image
+          width={500}
+          height={500}
+          alt={"Shelby Bolden Logo"}
+          // style={{ maxWidth: "100%" }}
+          src="/shelby_boldon_logo.png"
+        />
 
         <Link href="/contact" passHref className="w-full">
           <div className="btn btn-primary w-full max-w-lg">Contact</div>
         </Link>
       </div>
-    </div>
+    </StandardPageWrapper>
   );
 };
 

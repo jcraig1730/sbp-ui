@@ -1,10 +1,12 @@
 "use client";
 import { Photo } from "@/api/dtoTypes";
+import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 interface ImageModalProps {
   returnUrl: string;
+  alt: string;
 }
 
 const ImageModalServerComponent = (props: ImageModalProps) => {
@@ -29,7 +31,12 @@ const ImageModalServerComponent = (props: ImageModalProps) => {
       }}
       className={`z-[999] w-[100vw] h-[100vh] fixed top-0 left-0 flex items-center justify-center bg-secondary bg-opacity-90`}
     >
-      <img src={imageUrl} className="max-w-full max-h-full" />
+      <Image
+        alt={props.alt}
+        src={imageUrl}
+        className="max-w-full max-h-full object-contain"
+        fill
+      />
     </div>
   );
 };

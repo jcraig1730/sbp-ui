@@ -97,16 +97,6 @@ const PurchaseCompletePage = () => {
       </div>
     </div>
   );
-
-  return (
-    <div>
-      <div>Congratulations! You're appointment has been scheduled</div>
-      <div>
-        See you at {new Date(start!).toLocaleTimeString()} on{" "}
-        {new Date(start!).toLocaleDateString()} for your {pkg} photo shoot!!
-      </div>
-    </div>
-  );
 };
 
 export default PurchaseCompletePage;
