@@ -8,7 +8,10 @@ import {
   User,
 } from "./dtoTypes";
 
-const apiUrl = "http://localhost:3000/";
+const apiUrl =
+  process.env.NODE_ENV === "development"
+    ? "http://localhost:3000/"
+    : "http://74.208.128.87:3000/";
 
 export const createAppointment = async (
   dto: CreateEventDto

@@ -13,6 +13,11 @@ import { v4 } from "uuid";
 
 const stripePromise = loadStripe(process.env.STRIPE_KEY!);
 
+const baseReturnUrl =
+  process.env.NODE_ENV === "development"
+    ? "http://localhost:3001/"
+    : "https://www.shelbyboldenphotography.com/";
+
 const BookWrapper = (props: {
   selected: string;
   intent: {
@@ -67,7 +72,7 @@ const BookWrapper = (props: {
         clientSecret: props.intent!.clientSecret,
         elements: elements || undefined,
         confirmParams: {
-          return_url: `http://localhost:3001/purchase-complete?start=${selectedDate}&package=${selectedPackage}&type=${
+          return_url: `${baseReturnUrl}purchase-complete?start=${selectedDate}&package=${selectedPackage}&type=${
             ["package 1", "package 2", "package 3"].includes(selectedPackage)
               ? "standard"
               : "infant"
