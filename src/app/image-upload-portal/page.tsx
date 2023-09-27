@@ -1,9 +1,8 @@
 "use client";
-import { authenticateMaster, createAlbum, uploadPhoto } from "@/api";
+import { authenticateMaster, createAlbum, getUsers, uploadPhoto } from "@/api";
 import { Album, User } from "@/api/dtoTypes";
 import StandardPageWrapper from "@/components/pageWrappers/StandardPageWrapper";
 import { addToast } from "@/redux/slices/toast";
-import axios from "axios";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React, { FormEventHandler, useEffect, useState } from "react";
@@ -30,10 +29,7 @@ const ImageUploader = () => {
     (async () => {
       try {
         await authenticateMaster();
-        const result = await axios.get(
-          "http://localhost:3000/users/test-route",
-          { withCredentials: true, headers: { Authorization: document.cookie } }
-        );
+        const result = await getUsers();
         setCustomerList(result.data);
         setLoading(false);
       } catch (e) {

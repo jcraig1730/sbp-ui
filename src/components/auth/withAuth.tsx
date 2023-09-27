@@ -18,7 +18,7 @@ function withAuth<T extends React.JSX.IntrinsicAttributes>(
         dispatch(
           addToast({ id: v4(), message: "Please login", type: "error" })
         );
-        router.replace("/login"); // Adjust with your login route
+        router.replace("/login");
       }
     }, [authState, router, dispatch]);
 

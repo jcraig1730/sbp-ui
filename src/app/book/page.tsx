@@ -1,14 +1,13 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import axios from "axios";
 import { Elements, useElements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import BookPage from "./BookPage";
 import { Provider, useDispatch } from "react-redux";
 import store from "@/redux/store";
 import { useRouter, useSearchParams } from "next/navigation";
-import { verifyToken } from "@/api";
+import { getPaymentIntent, updatePaymentIntent, verifyToken } from "@/api";
 import { addToast } from "@/redux/slices/toast";
 import { v4 } from "uuid";
 
@@ -109,26 +108,10 @@ const ElementWrapper = () => {
   const [loading, setLoading] = useState(true);
   const searchParams = useSearchParams();
 
-  const getIntent = useCallback(
-    async () =>
-      await axios.post(
-        "http://localhost:3000/payments",
-        {
-          description: searchParams.get("package")?.toLowerCase(),
-        },
-        { withCredentials: true, headers: { Authorization: document.cookie } }
-      ),
-    [searchParams]
-  );
+  const getIntent = useCallback(getPaymentIntent, [searchParams]);
 
   const updateIntent = async (id: string, description: string) => {
-    const result = await axios.put(
-      "http://localhost:3000/payments/update-intent?id=" + id,
-      {
-        description,
-      },
-      { withCredentials: true, headers: { Authorization: document.cookie } }
-    );
+    const result = await updatePaymentIntent(description, id);
     setIntent({
       clientSecret: result.data.client_secret,
       amount: result.data.amount,
@@ -141,7 +124,9 @@ const ElementWrapper = () => {
   useEffect(() => {
     (async () => {
       try {
-        const result = await getIntent();
+        const result = await getIntent(
+          searchParams.get("package")?.toLowerCase()!
+        );
         setIntent({
           clientSecret: result.data.clientSecret,
           id: result.data.id,

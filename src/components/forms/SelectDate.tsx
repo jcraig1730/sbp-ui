@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import { DayPicker } from "react-day-picker";
 import "react-day-picker/dist/style.css";
+import { getOpenTimeslots } from "@/api";
 
 type OpenSlot = { hour: number; minute: number; formatted: string };
 
@@ -28,13 +28,9 @@ function SelectDate(props: SelectDateProps) {
     number | undefined
   >();
   useEffect(() => {
-    // Replace with your API call to get Google Calendar free/busy data
     const fetchBusyDays = async () => {
       try {
-        const response = await axios.get(
-          "http://localhost:3000/schedule/timeslots"
-        );
-
+        const response = await getOpenTimeslots();
         setSchedule(response.data);
       } catch (error) {
         console.error("Error fetching busy days", error);
@@ -45,7 +41,7 @@ function SelectDate(props: SelectDateProps) {
 
   const handleDayClick = (day: Date) => {
     setSelectedDay(day);
-    // Filter available time slots for the selected day
+
     const availableSlots = getAvailableTimeSlots(day);
     setSelectedTimeSlot(undefined);
     setTimeSlots(availableSlots.map((slot) => slot));

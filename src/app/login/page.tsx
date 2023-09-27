@@ -1,7 +1,7 @@
 "use client";
 
+import { confirmEmail, loginUser } from "@/api";
 import StandardPageWrapper from "@/components/pageWrappers/StandardPageWrapper";
-import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
@@ -100,30 +100,12 @@ const Login = () => {
                   e.preventDefault();
                   const result =
                     params.get("token") !== null
-                      ? await axios.post(
-                          "http://localhost:3000/auth/confirm-email?token=" +
-                            params.get("token"),
-                          {
-                            username: email,
-                            password,
-                            confirmationCode: params.get("token"),
-                          },
-                          {
-                            withCredentials: true,
-                            headers: { Authorization: document.cookie },
-                          }
+                      ? await confirmEmail(
+                          email,
+                          password,
+                          params.get("token")!
                         )
-                      : await axios.post(
-                          "http://localhost:3000/auth/login",
-                          {
-                            username: email,
-                            password,
-                          },
-                          {
-                            withCredentials: true,
-                            headers: { Authorization: document.cookie },
-                          }
-                        );
+                      : await loginUser(email, password);
                   if (result.status === 201) {
                     router.push("/account");
                   }

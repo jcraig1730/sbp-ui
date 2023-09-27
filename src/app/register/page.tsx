@@ -1,7 +1,7 @@
 "use client";
 
+import { registerUser } from "@/api";
 import UserRegisterForm from "@/components/forms/UserRegisterForm";
-import axios from "axios";
 import { useRouter } from "next/navigation";
 import { MouseEvent, useState } from "react";
 
@@ -21,7 +21,7 @@ const Register = () => {
 
   const router = useRouter();
 
-  const registerUser = async (e: MouseEvent) => {
+  const register = async (e: MouseEvent) => {
     e.preventDefault();
     if (data.password !== data.passwordConfirm) {
       return;
@@ -41,10 +41,7 @@ const Register = () => {
       },
     };
 
-    const result = await axios.post(
-      "http://localhost:3000/auth/register",
-      body
-    );
+    const result = await registerUser(body);
 
     if (result.status === 201) {
       router.push("/register/confirm");
@@ -62,7 +59,7 @@ const Register = () => {
           <UserRegisterForm
             data={data}
             setData={(key, value) => setData((d) => ({ ...d, [key]: value }))}
-            submit={registerUser}
+            submit={register}
           />
         </div>
         <div className="w-full md:w-1/2 bg-bottom bg-cover bg-no-repeat  h-screen  bg-[url(https://images-pw.pixieset.com/elementfield/299268951/Sadie15-82448cec.jpg)]"></div>

@@ -61,3 +61,79 @@ export const createContact = async (data: CreateContact) => {
   const result = await axios.post(apiUrl + "email/contact-form", data);
   return result.status;
 };
+
+export const getPaymentIntent = (description: string) => {
+  return axios.post(
+    apiUrl + "payments",
+    {
+      description,
+    },
+    { withCredentials: true, headers: { Authorization: document.cookie } }
+  );
+};
+
+export const updatePaymentIntent = async (
+  description: string,
+  intentId: string
+) => {
+  return await axios.put(
+    apiUrl + "payments/update-intent?id=" + intentId,
+    {
+      description,
+    },
+    { withCredentials: true, headers: { Authorization: document.cookie } }
+  );
+};
+
+export const getUsers = () =>
+  axios.get(apiUrl + "test-route", {
+    withCredentials: true,
+    headers: { Authorization: document.cookie },
+  });
+
+export const confirmEmail = (
+  username: string,
+  password: string,
+  token: string
+) =>
+  axios.post(
+    apiUrl + "auth/confirm-email?token=" + token,
+    {
+      username,
+      password,
+      confirmationCode: token,
+    },
+    {
+      withCredentials: true,
+      headers: { Authorization: document.cookie },
+    }
+  );
+
+export const loginUser = (username: string, password: string) =>
+  axios.post(
+    apiUrl + "auth/login",
+    {
+      username,
+      password,
+    },
+    {
+      withCredentials: true,
+      headers: { Authorization: document.cookie },
+    }
+  );
+
+export const registerUser = (data: {
+  email: string;
+  password: string;
+  profile: {
+    firstName: string;
+    lastName: string;
+    street: string;
+    city: string;
+    state: string;
+    zip: string;
+    phone: string;
+  };
+}) => axios.post(apiUrl + "auth/register", data);
+
+export const getOpenTimeslots = () => axios.get(apiUrl + "schedule/timeslots");
