@@ -11,7 +11,6 @@ const nextConfig = {
   },
   env: {
     STRIPE_KEY: process.env.STRIPE_KEY,
-    NODE_ENV: process.env.NODE_ENV,
   },
 };
 
