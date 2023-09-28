@@ -11,7 +11,7 @@ import {
 const apiUrl =
   process.env.NODE_ENV === "development"
     ? "http://localhost:3000/"
-    : "http://74.208.128.87:3000/";
+    : "https://api.shelbyboldenphotography.com/";
 
 export const createAppointment = async (
   dto: CreateEventDto
