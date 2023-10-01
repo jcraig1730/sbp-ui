@@ -1,9 +1,16 @@
 import dynamic from "next/dynamic";
 import PortfolioPhotoList from "@/components/photoDisplays/PortfolioPhotoList";
 import StandardPageWrapper from "@/components/pageWrappers/StandardPageWrapper";
+import { Metadata } from "next";
 const ImageModalServerComponent = dynamic(
   () => import("@/components/modals/ImageModalServerComponent")
 );
+
+export const metadata: Metadata = {
+  title: "Shelby Bolden Photography Couples Portfolio",
+  description:
+    "Shelby Bolden Photography -- Couples Portofio, Couples Photos, Wedding Photos, Engagement Photos -- Professional Photographer in Warner Robins, Georgia",
+};
 
 const CouplesPortfolio = () => {
   return (
