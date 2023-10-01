@@ -1,5 +1,6 @@
 import StandardPageWrapper from "@/components/pageWrappers/StandardPageWrapper";
 import PackageCard, { PackageCardProps } from "./packageCard";
+import { Metadata } from "next";
 
 const packages: PackageCardProps[] = [
   {
@@ -58,6 +59,12 @@ const packages: PackageCardProps[] = [
       "http://images-pw.pixieset.com/elementfield/820368951/639A6767-3d0201ab.jpg",
   },
 ];
+
+export const metadata: Metadata = {
+  title: "Shelby Bolden Photography Pricing",
+  description:
+    "Shelby Bolden Photography -- Price list, Packages, Photo Specials, Warner Robins Photography -- Professional Photographer in Warner Robins, Georgia",
+};
 
 const Pricing = () => {
   return (

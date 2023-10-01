@@ -1,9 +1,16 @@
 import dynamic from "next/dynamic";
 import PortfolioPhotoList from "@/components/photoDisplays/PortfolioPhotoList";
 import StandardPageWrapper from "@/components/pageWrappers/StandardPageWrapper";
+import { Metadata } from "next";
 const ImageModalServerComponent = dynamic(
   () => import("@/components/modals/ImageModalServerComponent")
 );
+
+export const metadata: Metadata = {
+  title: "Shelby Bolden Photography Families Portfolio",
+  description:
+    "Shelby Bolden Photography -- Families Portfolio, Family Photos -- Professional Photographer in Warner Robins, Georgia",
+};
 
 const FamilyPhotos = () => {
   return (
