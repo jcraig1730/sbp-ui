@@ -15,7 +15,7 @@ export default function Home() {
             <div className="relative w-0 md:w-1/2 h-0 md:h-[500px] rounded-xl">
               <Image
                 src={
-                  "https://images-pw.pixieset.com/elementfield/299268951/639A6510-1-cb7469f3.jpg"
+                  "https://res.cloudinary.com/dfnp8pdyk/image/upload/v1695338520/pqti9ugqd0nfz8fxnlpo.jpg"
                 }
                 alt="adorable child raising his hands"
                 fill
