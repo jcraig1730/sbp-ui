@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { Providers } from "@/redux/providers";
 import Footer from "@/components/footer/Footer";
 import Toast from "@/components/toasts/Toast";
+import GoogleAnalytics from "./GoogleAnalytics";
 
 export const metadata: Metadata = {
   title: "Shelby Bolden Photography",
@@ -27,6 +28,7 @@ export default function RootLayout({
       </head>
 
       <body data-theme="sbp" className={`min-h-full bg-secondary`}>
+        <GoogleAnalytics />
         <Providers>
           <Navbar />
           <main>{children}</main>

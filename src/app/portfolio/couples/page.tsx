@@ -1,9 +1,16 @@
 import dynamic from "next/dynamic";
 import PortfolioPhotoList from "@/components/photoDisplays/PortfolioPhotoList";
 import StandardPageWrapper from "@/components/pageWrappers/StandardPageWrapper";
+import { Metadata } from "next";
 const ImageModalServerComponent = dynamic(
   () => import("@/components/modals/ImageModalServerComponent")
 );
+
+export const metadata: Metadata = {
+  title: "Shelby Bolden Photography Couples Portfolio",
+  description:
+    "Shelby Bolden Photography -- Couples Portofio, Couples Photos, Wedding Photos, Engagement Photos -- Professional Photographer in Warner Robins, Georgia",
+};
 
 const CouplesPortfolio = () => {
   return (
@@ -22,7 +29,7 @@ const CouplesPortfolio = () => {
 };
 
 const images = [
-  "http://images-pw.pixieset.com/elementfield/820368951/639A9700-b8687344.jpg",
+  "https://res.cloudinary.com/dfnp8pdyk/image/upload/v1695340065/gzo8chedtvb6h6douogz.jpg",
   "http://images-pw.pixieset.com/elementfield/820368951/639A6767-3d0201ab.jpg",
   "http://images-pw.pixieset.com/elementfield/820368951/639A9386-6a32d07a.jpg",
   "http://images-pw.pixieset.com/elementfield/820368951/639A8498-df699be6.jpg",

@@ -1,6 +1,13 @@
 import StandardPageWrapper from "@/components/pageWrappers/StandardPageWrapper";
+import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "About Shelby Bolden Photography",
+  description:
+    "About Shelby Bolden -- Professional Photographer in Warner Robins, Georgia",
+};
 
 const About = () => {
   return (

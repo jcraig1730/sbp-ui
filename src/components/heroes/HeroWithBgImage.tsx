@@ -6,7 +6,8 @@ const HeroWithBgImage = () => {
     <div
       className="hero min-h-screen"
       style={{
-        backgroundImage: "url(/hero_image_1.jpeg)",
+        backgroundImage:
+          "url(https://res.cloudinary.com/dfnp8pdyk/image/upload/v1695083953/ycqbmm49pvzwppfm71nj.jpg)",
       }}
     >
       <div className="hero-content flex flex-col justify-between h-full max-w-xl">
