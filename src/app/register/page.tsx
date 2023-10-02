@@ -62,7 +62,7 @@ const Register = () => {
             submit={register}
           />
         </div>
-        <div className="w-full md:w-1/2 bg-bottom bg-cover bg-no-repeat  h-screen  bg-[url(https://images-pw.pixieset.com/elementfield/299268951/Sadie15-82448cec.jpg)]"></div>
+        <div className="w-full md:w-1/2 bg-bottom bg-cover bg-no-repeat  h-screen  bg-[url(https://res.cloudinary.com/dfnp8pdyk/image/upload/v1696212163/Sadie15-82448cec_d76nbm.jpg)]"></div>
       </div>
     </>
   );

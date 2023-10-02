@@ -51,7 +51,7 @@ const packageInfo = [
     deliver: "All images are delivered through online gallery.",
     price: "$195.00",
     image:
-      "https://images-pw.pixieset.com/elementfield/703368951/b8ed7ffb7116bbd626469611c2f424d9-a9148ecd.jpg",
+      "https://res.cloudinary.com/dfnp8pdyk/image/upload/v1696214005/b8ed7ffb7116bbd626469611c2f424d9-a9148ecd_ukc8lp.jpg",
   },
   {
     name: "Package 2",
@@ -64,7 +64,7 @@ const packageInfo = [
     deliver: "All images are delivered through online gallery.",
     price: "$225.00",
     image:
-      "https://images-pw.pixieset.com/elementfield/713368951/639A1959-38-8dd556ee.jpg",
+      "https://res.cloudinary.com/dfnp8pdyk/image/upload/v1696214070/639A1959-38-8dd556ee_tbwfp0.jpg",
   },
   {
     name: "Package 3",
@@ -77,7 +77,7 @@ const packageInfo = [
     deliver: "All images are delivered through online gallery.",
     price: "$315.00",
     image:
-      "https://images-pw.pixieset.com/elementfield/213368951/639A9552-5937facb.jpg",
+      "https://res.cloudinary.com/dfnp8pdyk/image/upload/v1696214147/639A9552-5937facb_cv7ojy.jpg",
   },
   {
     name: "Lifestyle newborn",
@@ -85,7 +85,7 @@ const packageInfo = [
     deliver: "All images are delivered through online gallery.",
     price: "$400.00",
     image:
-      "https://images-pw.pixieset.com/elementfield/638381261/639A4063-1-54c5fedf.jpg",
+      "https://res.cloudinary.com/dfnp8pdyk/image/upload/v1696214223/639A4063-1-54c5fedf_ukrozn.jpg",
   },
 ];
 

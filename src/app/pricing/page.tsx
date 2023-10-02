@@ -14,7 +14,7 @@ const packages: PackageCardProps[] = [
     deliver: "All images are delivered through online gallery.",
     price: "$195.00",
     image:
-      "http://images-pw.pixieset.com/elementfield/799268951/639A8312-2-1-60dcfbee.jpg",
+      "https://res.cloudinary.com/dfnp8pdyk/image/upload/v1696213645/639A8312-2-1-60dcfbee_ynkvyw.jpg",
   },
   {
     name: "Package 2",
@@ -27,7 +27,7 @@ const packages: PackageCardProps[] = [
     deliver: "All images are delivered through online gallery.",
     price: "$225.00",
     image:
-      "https://images-pw.pixieset.com/elementfield/299268951/639A6592-1-9de1f7cf.jpg",
+      "https://res.cloudinary.com/dfnp8pdyk/image/upload/v1695338522/vr4lmqtz54j9ycfqcphw.jpg",
   },
   {
     name: "Package 3",
@@ -40,7 +40,7 @@ const packages: PackageCardProps[] = [
     deliver: "All images are delivered through online gallery.",
     price: "$315.00",
     image:
-      "https://images-pw.pixieset.com/elementfield/299268951/Tweaks17-5743331d.jpg",
+      "https://res.cloudinary.com/dfnp8pdyk/image/upload/v1695338519/ibckiy4yez7j3ch77zch.jpg",
   },
   {
     name: "Lifestyle Newborn",
@@ -48,7 +48,7 @@ const packages: PackageCardProps[] = [
     deliver: "All images are delivered through online gallery.",
     price: "$400.00",
     image:
-      "https://images-pw.pixieset.com/elementfield/299268951/Sadie3-907c7f9a.jpg",
+      "https://res.cloudinary.com/dfnp8pdyk/image/upload/v1696212937/Sadie3-907c7f9a_yc3h9n.jpg",
   },
   {
     name: "Wedding/Engagement",
@@ -56,7 +56,7 @@ const packages: PackageCardProps[] = [
       "For wedding inquiries please email in the contact tab to discuss more about the big day!",
     price: "$2,000.00",
     image:
-      "http://images-pw.pixieset.com/elementfield/820368951/639A6767-3d0201ab.jpg",
+      "https://res.cloudinary.com/dfnp8pdyk/image/upload/v1695340064/gticmgkzj6qkixtf5age.jpg",
   },
 ];
 

@@ -36,7 +36,7 @@ const About = () => {
         <div className="relative w-full lg:w-[33vw] h-[600px] lg:ml-2 float-right flex justify-center">
           <Image
             src={
-              "https://images-pw.pixieset.com/elementfield/831672161/IMG_4017-c1a0eec0.jpg"
+              "https://res.cloudinary.com/dfnp8pdyk/image/upload/v1696210258/IMG_4017-c1a0eec0_sdx6ij.jpg"
             }
             fill
             alt={"Shelby with her family"}

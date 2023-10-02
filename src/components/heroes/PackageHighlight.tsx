@@ -7,7 +7,7 @@ const PackageHighlight = () => {
       <div className="hero-content flex flex-col lg:flex-row items-center justify-center w-full">
         <div className="relative max-w-sm w-full lg:w-1/2 h-[400px] rounded-lg shadow-2xl mask mask-heart">
           <Image
-            src="https://images-pw.pixieset.com/elementfield/638381261/639A4063-1-54c5fedf.jpg"
+            src="https://res.cloudinary.com/dfnp8pdyk/image/upload/v1696214223/639A4063-1-54c5fedf_ukrozn.jpg"
             alt="Photography Highlight"
             layout="fill"
             className="rounded-lg object-cover"

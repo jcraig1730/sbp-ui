@@ -2,9 +2,6 @@
 const nextConfig = {
   images: {
     remotePatterns: [
-      {
-        hostname: "images-pw.pixieset.com",
-      },
       { hostname: "res.cloudinary.com" },
       { hostname: "alumni.engineering.utoronto.ca" },
     ],

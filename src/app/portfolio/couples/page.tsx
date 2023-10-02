@@ -30,17 +30,17 @@ const CouplesPortfolio = () => {
 
 const images = [
   "https://res.cloudinary.com/dfnp8pdyk/image/upload/v1695340065/gzo8chedtvb6h6douogz.jpg",
-  "http://images-pw.pixieset.com/elementfield/820368951/639A6767-3d0201ab.jpg",
-  "http://images-pw.pixieset.com/elementfield/820368951/639A9386-6a32d07a.jpg",
-  "http://images-pw.pixieset.com/elementfield/820368951/639A8498-df699be6.jpg",
-  "http://images-pw.pixieset.com/elementfield/820368951/639A8654-f689d3d1.jpg",
-  "http://images-pw.pixieset.com/elementfield/820368951/639A8672-c6440169.jpg",
-  "http://images-pw.pixieset.com/elementfield/820368951/639A6840-1-f520305a.jpg",
-  "http://images-pw.pixieset.com/elementfield/820368951/639A8849-09bac570.jpg",
-  "http://images-pw.pixieset.com/elementfield/820368951/Tweaks6-b4ba6abf.jpg",
-  "http://images-pw.pixieset.com/elementfield/820368951/639A1665-2-1e6f91ef.jpg",
-  "http://images-pw.pixieset.com/elementfield/820368951/639A1686-3-d6444ff1.jpg",
-  "http://images-pw.pixieset.com/elementfield/820368951/639A1688-2-79c8e9a2.jpg",
+  "https://res.cloudinary.com/dfnp8pdyk/image/upload/v1695340064/gticmgkzj6qkixtf5age.jpg",
+  "https://res.cloudinary.com/dfnp8pdyk/image/upload/v1696210543/639A9386-6a32d07a_gk99bd.jpg",
+  "https://res.cloudinary.com/dfnp8pdyk/image/upload/v1696210620/639A8498-df699be6_kaghir.jpg",
+  "https://res.cloudinary.com/dfnp8pdyk/image/upload/v1696210673/639A8654-f689d3d1_wwxueu.jpg",
+  "https://res.cloudinary.com/dfnp8pdyk/image/upload/v1696210712/639A8672-c6440169_zz4f3e.jpg",
+  "https://res.cloudinary.com/dfnp8pdyk/image/upload/v1696210800/639A6840-1-f520305a_mrtt9s.jpg",
+  "https://res.cloudinary.com/dfnp8pdyk/image/upload/v1695340064/bqyerkbnh4orh4unp08w.jpg",
+  "https://res.cloudinary.com/dfnp8pdyk/image/upload/v1696210999/Tweaks6-b4ba6abf_c1q9if.jpg",
+  "https://res.cloudinary.com/dfnp8pdyk/image/upload/v1696211074/639A1665-2-1e6f91ef_ryzzal.jpg",
+  "https://res.cloudinary.com/dfnp8pdyk/image/upload/v1695340063/woce5asyg8wzpdjmwdkj.jpg",
+  "https://res.cloudinary.com/dfnp8pdyk/image/upload/v1696211175/639A1688-2-79c8e9a2_hoff9d.jpg",
 ];
 
 export default CouplesPortfolio;
