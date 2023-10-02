@@ -6,26 +6,36 @@ interface BookingConfirmationProps {
 const BookingConfirmation = (props: BookingConfirmationProps) => {
   const formattedName = props.package[0].toUpperCase() + props.package.slice(1);
   return (
-    <div className="text-2xl flex flex-col items-center">
-      <div className="mb-8">
-        Selected Package: {formattedName}
-        <ul className="ml-2 mt-2">
-          {packageInfo
-            .find((p) => p.name === formattedName)
-            ?.details.map((d) => (
-              <li key={d}>
-                <span></span>
-                {d}
-              </li>
-            ))}
-          <li>
-            Price {packageInfo.find((p) => p.name === formattedName)?.price}
-          </li>
-        </ul>
+    <>
+      <div className="text-2xl flex flex-col items-center">
+        <h2 className="text-3xl w-full md:w-4/5 text-left mb-2">
+          Review Order
+        </h2>
+        <div className="mb-4 flex flex-col w-full items-center md:flex-row md:justify-evenly">
+          <div>
+            {formattedName}
+            <ul className="text-xl ml-2 mt-2">
+              {packageInfo
+                .find((p) => p.name === formattedName)
+                ?.details.map((d) => (
+                  <li key={d}>
+                    <span>- {d}</span>
+                  </li>
+                ))}
+            </ul>
+          </div>
+          <div>
+            <div className="my-2">
+              Date: {new Date(props.date).toLocaleDateString()}
+            </div>
+            <div>Time: {new Date(props.date).toLocaleTimeString()}</div>
+            <div className="my-2">
+              {packageInfo.find((p) => p.name === formattedName)?.price}
+            </div>
+          </div>
+        </div>
       </div>
-      <div>Date: {new Date(props.date).toLocaleDateString()}</div>
-      <div>Time: {new Date(props.date).toLocaleTimeString()}</div>
-    </div>
+    </>
   );
 };
 
