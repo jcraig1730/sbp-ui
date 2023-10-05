@@ -2,7 +2,6 @@ import HeroWithBgImage from "@/components/heroes/HeroWithBgImage";
 import PackageHighlight from "@/components/heroes/PackageHighlight";
 import GridPhotoDivider from "@/components/photoDisplays/GridPhotoDisplay";
 import Image from "next/image";
-import "@stripe/stripe-js";
 import Link from "next/link";
 
 export default function Home() {
