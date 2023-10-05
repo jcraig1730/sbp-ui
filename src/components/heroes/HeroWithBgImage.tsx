@@ -3,13 +3,20 @@ import Link from "next/link";
 
 const HeroWithBgImage = () => {
   return (
-    <div
-      className="hero min-h-screen"
-      style={{
-        backgroundImage:
-          "url(https://res.cloudinary.com/dfnp8pdyk/image/upload/v1695083953/ycqbmm49pvzwppfm71nj.jpg)",
-      }}
-    >
+    <div className="hero min-h-screen relative">
+      <Image
+        alt="Mountains"
+        src={
+          "https://res.cloudinary.com/dfnp8pdyk/image/upload/v1695083953/ycqbmm49pvzwppfm71nj.jpg"
+        }
+        quality={100}
+        priority
+        fill
+        sizes="100vw"
+        style={{
+          objectFit: "cover",
+        }}
+      />
       <div className="hero-content flex flex-col justify-between h-full max-w-xl">
         <div className={"absolute"}>
           <Image
