@@ -8,7 +8,8 @@ import GoogleAnalytics from "./GoogleAnalytics";
 
 export const metadata: Metadata = {
   title: "Shelby Bolden Photography",
-  description: "Professional Photography in Warner Robins, Georgia",
+  description:
+    "Capture timeless memories with a touch of style. Based in Warner Robins, Georgia, Shelby Bolden specializes in unique family and lifestyle photography that tells your story in a picture-perfect way. Let's create beautiful moments together.",
 };
 
 export default function RootLayout({

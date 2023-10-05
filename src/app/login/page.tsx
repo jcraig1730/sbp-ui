@@ -71,7 +71,7 @@ const Login = () => {
                   className="border border-gray-300 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary block w-full p-2.5  text-accent"
                 />
               </div>
-              <div className="flex items-center justify-between">
+              {/* <div className="flex items-center justify-between">
                 <div className="flex items-start">
                   <div className="flex items-center h-5">
                     <input
@@ -93,7 +93,7 @@ const Login = () => {
                 >
                   Forgot password?
                 </a>
-              </div>
+              </div> */}
               <button
                 type="submit"
                 onClick={async (e) => {

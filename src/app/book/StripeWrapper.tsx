@@ -28,11 +28,13 @@ const BookWrapper = (props: {
   };
   updateIntent: (id: string, description: string) => void;
 }) => {
+  const dispatch = useDispatch();
   const searchParams = useSearchParams();
   const [step, setStep] = useState(0);
   const [selectedPackage, setSelectedPackage] = useState<string>(() => {
     return searchParams.get("package") || "package 1";
   });
+  const [error, setError] = useState("");
   const selectPackage = (packageName: string) => {
     setSelectedPackage(packageName.toLowerCase());
   };
@@ -68,7 +70,9 @@ const BookWrapper = (props: {
       const userData = await verifyToken();
       if (!userData.email) router.push("/login");
       elements!.submit();
-      (await stripePromise)?.confirmPayment({
+      const result = await (
+        await stripePromise
+      )?.confirmPayment({
         clientSecret: props.intent!.clientSecret,
         elements: elements || undefined,
         confirmParams: {
@@ -79,6 +83,18 @@ const BookWrapper = (props: {
           }`,
         },
       });
+      if (result?.error) {
+        setStep(2);
+        setProcessing(false);
+        setError("Payment was not succesful, please try again.");
+        dispatch(
+          addToast({
+            message: "Payment failed. Please try again.",
+            type: "error",
+            id: v4(),
+          })
+        );
+      }
     }
   };
   const backClick = () => {
@@ -99,11 +115,13 @@ const BookWrapper = (props: {
       processing={processing}
       paymentFormComplete={paymentComplete}
       setPaymentFormComplete={setPaymentComplete}
+      error={error}
     />
   );
 };
 
 const StripeWrapper = () => {
+  const dispatch = useDispatch();
   const [intent, setIntent] = useState<{
     clientSecret: string;
     id: string;
@@ -125,7 +143,6 @@ const StripeWrapper = () => {
     });
   };
   const router = useRouter();
-  const dispatch = useDispatch();
   useEffect(() => {
     (async () => {
       try {
@@ -143,8 +160,7 @@ const StripeWrapper = () => {
         dispatch(
           addToast({
             id: v4(),
-            message:
-              "You must have an account and be logged in to create an appointment",
+            message: "Please login to book an appointment",
             type: "info",
           })
         );

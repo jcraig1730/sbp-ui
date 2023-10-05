@@ -15,6 +15,7 @@ interface BookPageProps {
   processing: boolean;
   paymentFormComplete: boolean;
   setPaymentFormComplete: (val: boolean) => void;
+  error: string;
 }
 
 const BookPage = (props: BookPageProps) => {
@@ -26,6 +27,7 @@ const BookPage = (props: BookPageProps) => {
     selectedDate,
     backClick,
     nextClick,
+    error,
   } = props;
 
   return (
@@ -72,6 +74,7 @@ const BookPage = (props: BookPageProps) => {
           )}
         </div>
       </div>
+      <div className="text-error text-center">{error}</div>
       <div className=" flex justify-evenly mt-12">
         <div className="btn btn-accent" onClick={backClick}>
           Back
