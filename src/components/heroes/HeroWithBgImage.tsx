@@ -5,7 +5,7 @@ const HeroWithBgImage = () => {
   return (
     <div className="hero min-h-screen relative">
       <Image
-        alt="Mountains"
+        alt="Mother with child"
         src={
           "https://res.cloudinary.com/dfnp8pdyk/image/upload/v1695083953/ycqbmm49pvzwppfm71nj.jpg"
         }

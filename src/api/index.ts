@@ -139,4 +139,19 @@ export const registerUser = (data: {
   };
 }) => axios.post(apiUrl + "auth/register", data);
 
+export const initiateForgotPassword = (email: string) => {
+  return axios.post(apiUrl + "auth/forgot-password?email=" + email);
+};
+
+export const updatePassword = (
+  confirmationCode: string,
+  email: string,
+  newPassword: string
+) => {
+  return axios.patch(
+    apiUrl + "auth/update-password?token=" + confirmationCode,
+    { email, newPassword }
+  );
+};
+
 export const getOpenTimeslots = () => axios.get(apiUrl + "schedule/timeslots");

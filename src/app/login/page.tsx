@@ -2,18 +2,23 @@
 
 import { confirmEmail, loginUser } from "@/api";
 import StandardPageWrapper from "@/components/pageWrappers/StandardPageWrapper";
+import { addToast } from "@/redux/slices/toast";
+import { validateEmail } from "@/utils";
 import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { v4 } from "uuid";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const params = useSearchParams();
   const router = useRouter();
+  const dispatch = useDispatch();
 
   return (
     <StandardPageWrapper title="Login">
@@ -71,43 +76,68 @@ const Login = () => {
                   className="border border-gray-300 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary block w-full p-2.5  text-accent"
                 />
               </div>
-              {/* <div className="flex items-center justify-between">
-                <div className="flex items-start">
-                  <div className="flex items-center h-5">
-                    <input
-                      id="remember"
-                      aria-describedby="remember"
-                      type="checkbox"
-                      className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
-                    />
-                  </div>
-                  <div className="ml-3 text-sm">
-                    <label htmlFor="remember" className="text-gray-300">
-                      Remember me
-                    </label>
-                  </div>
-                </div>
-                <a
-                  href="#"
-                  className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500"
+              <div className="flex items-center justify-between">
+                <Link
+                  href="forgot-password"
+                  className="text-sm font-medium text-white hover:underline dark:text-primary-500"
                 >
                   Forgot password?
-                </a>
-              </div> */}
+                </Link>
+              </div>
               <button
                 type="submit"
                 onClick={async (e) => {
                   e.preventDefault();
-                  const result =
-                    params.get("token") !== null
-                      ? await confirmEmail(
-                          email,
-                          password,
-                          params.get("token")!
-                        )
-                      : await loginUser(email, password);
-                  if (result.status === 201) {
-                    router.push("/account");
+                  if (!email) {
+                    dispatch(
+                      addToast({
+                        message: "Email cannot be empty",
+                        type: "error",
+                        id: v4(),
+                      })
+                    );
+                    return;
+                  }
+                  if (!validateEmail(email)) {
+                    dispatch(
+                      addToast({
+                        message: "Invalid email address",
+                        type: "error",
+                        id: v4(),
+                      })
+                    );
+                    return;
+                  }
+                  if (!password) {
+                    dispatch(
+                      addToast({
+                        message: "Password cannot be empty",
+                        type: "error",
+                        id: v4(),
+                      })
+                    );
+                    return;
+                  }
+                  try {
+                    const result =
+                      params.get("token") !== null
+                        ? await confirmEmail(
+                            email,
+                            password,
+                            params.get("token")!
+                          )
+                        : await loginUser(email, password);
+                    if (result.status === 201) {
+                      router.push("/account");
+                    }
+                  } catch (e) {
+                    dispatch(
+                      addToast({
+                        message: "Invalid username & password",
+                        type: "error",
+                        id: v4(),
+                      })
+                    );
                   }
                 }}
                 className="w-full bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"

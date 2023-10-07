@@ -42,46 +42,54 @@ const UserRegisterForm = (props: UserRegisterFormProps) => {
             </Link>
           </p>
           <form className="space-y-4 md:space-y-6 w-full" action="#">
-            {step === 0 &&
-              [
-                {
-                  id: "email",
-                  label: "Your email",
-                  name: "email",
-                  placeHolder: "example@example.com",
-                  type: "email",
-                  dataKey: "email",
-                },
-                {
-                  id: "password",
-                  label: "Password",
-                  name: "password",
-                  placeHolder: "example@example.com",
-                  type: "password",
-                  dataKey: "password",
-                },
-                {
-                  id: "confirm-password",
-                  label: "Confirm password",
-                  name: "confirm-password",
-                  placeHolder: "••••••••",
-                  setData: setData,
-                  type: "password",
-                  dataKey: "passwordConfirm",
-                },
-              ].map((i) => (
-                <CoreInput
-                  key={i.id}
-                  id={i.id}
-                  label={i.label}
-                  name={i.name}
-                  placeholder={i.placeHolder}
-                  setData={setData}
-                  type={i.type}
-                  value={data[i.dataKey as keyof typeof data]}
-                  dataKey={i.dataKey}
-                />
-              ))}
+            {step === 0 && (
+              <>
+                {[
+                  {
+                    id: "email",
+                    label: "Your email",
+                    name: "email",
+                    placeHolder: "example@example.com",
+                    type: "email",
+                    dataKey: "email",
+                  },
+                  {
+                    id: "password",
+                    label: "Password",
+                    name: "password",
+                    placeHolder: "example@example.com",
+                    type: "password",
+                    dataKey: "password",
+                  },
+                  {
+                    id: "confirm-password",
+                    label: "Confirm password",
+                    name: "confirm-password",
+                    placeHolder: "••••••••",
+                    setData: setData,
+                    type: "password",
+                    dataKey: "passwordConfirm",
+                  },
+                ].map((i) => (
+                  <CoreInput
+                    key={i.id}
+                    id={i.id}
+                    label={i.label}
+                    name={i.name}
+                    placeholder={i.placeHolder}
+                    setData={setData}
+                    type={i.type}
+                    value={data[i.dataKey as keyof typeof data]}
+                    dataKey={i.dataKey}
+                  />
+                ))}
+                <div className="text-xs text-white">
+                  Password must containt eight characters, at least one
+                  uppercase letter, one lowercase letter, one number and one
+                  special character
+                </div>
+              </>
+            )}
             {step === 0 && (
               <button
                 onClick={() => setStep((s) => s + 1)}
