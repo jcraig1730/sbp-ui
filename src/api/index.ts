@@ -7,11 +7,9 @@ import {
   Photo,
   User,
 } from "./dtoTypes";
+import { getUiUrl } from "@/utils";
 
-const apiUrl =
-  process.env.NODE_ENV === "development"
-    ? "http://localhost:3000/"
-    : "https://api.shelbyboldenphotography.com/";
+const apiUrl = getUiUrl();
 
 export const createAppointment = async (
   dto: CreateEventDto

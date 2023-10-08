@@ -14,3 +14,9 @@ export const validatePassword = (password: string): boolean => {
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,}$/;
   return regex.test(password);
 };
+
+export const getUiUrl = () => {
+  return process.env.NODE_ENV === "development"
+    ? "http://localhost:3000/"
+    : "https://api.shelbyboldenphotography.com/";
+};

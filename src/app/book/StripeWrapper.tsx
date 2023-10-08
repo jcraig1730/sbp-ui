@@ -10,13 +10,11 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { getPaymentIntent, updatePaymentIntent, verifyToken } from "@/api";
 import { addToast } from "@/redux/slices/toast";
 import { v4 } from "uuid";
+import { getUiUrl } from "@/utils";
 
 const stripePromise = loadStripe(process.env.STRIPE_KEY!);
 
-const baseReturnUrl =
-  process.env.NODE_ENV === "development"
-    ? "http://localhost:3001/"
-    : "https://www.shelbyboldenphotography.com/";
+const baseReturnUrl = getUiUrl();
 
 const BookWrapper = (props: {
   selected: string;

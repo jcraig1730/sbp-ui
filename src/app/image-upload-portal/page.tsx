@@ -4,6 +4,7 @@ import { Album, User } from "@/api/dtoTypes";
 import ImageModalServerComponent from "@/components/modals/ImageModalServerComponent";
 import StandardPageWrapper from "@/components/pageWrappers/StandardPageWrapper";
 import { addToast } from "@/redux/slices/toast";
+import { getUiUrl } from "@/utils";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -236,7 +237,7 @@ const ImageUploader = () => {
         )}
       </button>
       <ImageModalServerComponent
-        returnUrl="http://localhost:3001/image-upload-portal"
+        returnUrl={getUiUrl() + "image-upload-portal"}
         alt="Preview photo"
       />
     </StandardPageWrapper>
