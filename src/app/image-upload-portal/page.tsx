@@ -1,22 +1,24 @@
 "use client";
-import { authenticateMaster, createAlbum, getUsers, uploadPhoto } from "@/api";
+import { authenticateMaster, createAlbum, getUsers, uploadPhotos } from "@/api";
 import { Album, User } from "@/api/dtoTypes";
+import ImageModalServerComponent from "@/components/modals/ImageModalServerComponent";
 import StandardPageWrapper from "@/components/pageWrappers/StandardPageWrapper";
 import { addToast } from "@/redux/slices/toast";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React, { FormEventHandler, useEffect, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { v4 } from "uuid";
 
 const ImageUploader = () => {
-  const [file, setFile] = useState<File | null>(null);
-  const [imagePreviewUrl, setImagePreviewUrl] = useState("");
+  const [files, setFiles] = useState<File[]>([]);
+  const [imagePreviewUrls, setImagePreviewUrls] = useState<string[]>([]);
   const [customer, setCustomer] = useState<string>();
   const [albums, setAlbums] = useState<Album[]>([]);
   const [customerList, setCustomerList] = useState<User[]>([]);
   const [selectedAlbumId, setSelectedAlbumId] = useState<string>();
-
+  const [saving, setSaving] = useState(false);
   const [showNewAlbumForm, setShowNewAlbumForm] = useState(false);
   const [newAlbumName, setNewAlbumName] = useState("");
 
@@ -39,36 +41,45 @@ const ImageUploader = () => {
     })();
   }, [dispatch, router]);
 
-  const handleImageChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
-    e.preventDefault();
+  const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const newFiles = event.target.files;
+    if (newFiles) {
+      const imagesArray = Array.from(newFiles);
+      const updatedFiles = [...files, ...imagesArray];
+      setFiles(updatedFiles);
 
-    const reader = new FileReader();
-    if (!e.target.files) return;
-    const selectedFile = e.target.files[0];
-
-    reader.onloadend = () => {
-      setFile(selectedFile);
-      const result = reader.result as string;
-      setImagePreviewUrl(result);
-    };
-
-    if (selectedFile) {
-      reader.readAsDataURL(selectedFile);
+      const previewsArray = updatedFiles.map((file) =>
+        URL.createObjectURL(file)
+      );
+      setImagePreviewUrls(previewsArray);
     }
   };
 
-  const handleSubmit: FormEventHandler<HTMLFormElement> = (e) => {
-    e.preventDefault();
-    if (!file) {
+  const removeImage = (index: number) => {
+    const updatedFiles = files.slice(0, index).concat(files.slice(index + 1));
+    const updatedUrls = imagePreviewUrls
+      .slice(0, index)
+      .concat(imagePreviewUrls.slice(index + 1));
+
+    setFiles(updatedFiles);
+    setImagePreviewUrls(updatedUrls);
+  };
+
+  const handleSubmit = async () => {
+    if (!selectedAlbumId) {
+      dispatch(
+        addToast({
+          message: "Select or create an album",
+          type: "error",
+          id: v4(),
+        })
+      );
       return;
     }
-
     const formData = new FormData();
-    formData.append("file", file!);
-    formData.append("name", "test name");
-    if (selectedAlbumId) {
-      uploadPhoto(selectedAlbumId, formData);
-    }
+    files.forEach((f) => formData.append("files", f));
+    const response = await uploadPhotos(selectedAlbumId!, formData);
+    dispatch(addToast({ message: "Photos added", type: "success", id: v4() }));
   };
 
   if (loading)
@@ -79,7 +90,7 @@ const ImageUploader = () => {
   return (
     <StandardPageWrapper title="Image Upload Portal">
       <div className="flex">
-        <form onSubmit={handleSubmit} className={"flex flex-col"}>
+        <form className={"flex flex-col"}>
           <label htmlFor="customer-select">Select Customer</label>
           <select
             onChange={async (e) => {
@@ -124,26 +135,47 @@ const ImageUploader = () => {
               ))}
             </select>
             <button
-              onClick={() => setShowNewAlbumForm(true)}
-              className="btn btn-primary max-w-xs mt-1 mb-3"
+              onClick={(e) => {
+                e.preventDefault();
+                setShowNewAlbumForm(true);
+              }}
+              className="btn btn-ghost max-w-[200px] mt-2 mb-4"
             >
-              Create Album
+              Add Album+
             </button>
           </div>
 
-          <input type="file" onChange={handleImageChange} />
-          <button type="submit">Upload Image</button>
+          <input
+            type="file"
+            multiple
+            onChange={handleFileChange}
+            className="file-input file-input-lg file-input-accent"
+          />
         </form>
-        {imagePreviewUrl && (
-          <div className="relative w-1/2 h-[500px] mx-auto">
-            <Image
-              fill
-              className="object-contain"
-              src={imagePreviewUrl}
-              alt="Image Preview"
-            />
-          </div>
-        )}
+        <div className="flex flex-wrap w-full overflow-scroll">
+          {imagePreviewUrls.map((url, idx) => (
+            <div key={url} className="relative w-1/5 h-2/5 group">
+              <div
+                onClick={() => removeImage(idx)}
+                className="flex items-center justify-center opacity-0 right-0 group-hover:opacity-90 hover:cursor-pointer transition-opacity absolute z-10  rounded-full h-8 w-8 text-center  bg-error"
+              >
+                🗑️
+              </div>
+              <Image
+                src={url}
+                fill
+                className="object-cover"
+                alt="Image preview"
+              />
+              <Link href={"?image-url=" + url} passHref>
+                <div className="text-center absolute w-full bottom-0 h-1/4 top-100 bg-slate-300 transition-opacity opacity-0 group-hover:opacity-70">
+                  View Full Size
+                </div>
+              </Link>
+            </div>
+          ))}
+        </div>
+
         <div
           className={`${
             showNewAlbumForm ? "block" : "hidden"
@@ -192,6 +224,21 @@ const ImageUploader = () => {
           </div>
         </div>
       </div>
+      <button
+        onClick={handleSubmit}
+        type="submit"
+        className="w-full btn btn-accent mt-8"
+      >
+        {saving ? (
+          <div className="loading loading-ring"></div>
+        ) : (
+          "Upload Images"
+        )}
+      </button>
+      <ImageModalServerComponent
+        returnUrl="http://localhost:3001/image-upload-portal"
+        alt="Preview photo"
+      />
     </StandardPageWrapper>
   );
 };

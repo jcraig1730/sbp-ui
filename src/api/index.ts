@@ -44,10 +44,14 @@ export const authenticateMaster = async () => {
 };
 
 export const createAlbum = async (userId: string, name: string) => {
-  const result = await axios.post(apiUrl + "users/" + userId + "/albums", {
-    userId,
-    name,
-  });
+  const result = await axios.post(
+    apiUrl + "users/" + userId + "/albums",
+    {
+      userId,
+      name,
+    },
+    { withCredentials: true, headers: { Authorization: document.cookie } }
+  );
   return result.data as Album;
 };
 
@@ -58,6 +62,21 @@ export const uploadPhoto = async (albumId: string, formData: FormData) => {
     { headers: { "Content-Type": "multipart/form-data" } }
   );
   return result.data as Photo;
+};
+
+export const uploadPhotos = async (albumId: string, formData: FormData) => {
+  const result = await axios.post(
+    apiUrl + "albums/" + albumId + "/photos",
+    formData,
+    {
+      withCredentials: true,
+      headers: {
+        "Content-Type": "multipart/form-data",
+        Authorization: document.cookie,
+      },
+    }
+  );
+  return result.data as Photo[];
 };
 
 export const createContact = async (data: CreateContact) => {
@@ -89,7 +108,7 @@ export const updatePaymentIntent = async (
 };
 
 export const getUsers = () =>
-  axios.get(apiUrl + "test-route", {
+  axios.get(apiUrl + "users/test-route", {
     withCredentials: true,
     headers: { Authorization: document.cookie },
   });
