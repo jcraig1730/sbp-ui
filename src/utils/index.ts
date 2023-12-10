@@ -17,6 +17,18 @@ export const validatePassword = (password: string): boolean => {
 
 export const getUiUrl = () => {
   return process.env.NODE_ENV === "development"
+    ? "http://localhost:3001/"
+    : "https://shelbyboldenphotography.com/";
+};
+
+export const getApiUrl = () => {
+  return process.env.NODE_ENV === "development"
     ? "http://localhost:3000/"
     : "https://api.shelbyboldenphotography.com/";
+};
+
+export const getApiSocketUrl = () => {
+  return process.env.NODE_ENV === "development"
+    ? "http://localhost:3000"
+    : "https://api.shelbyboldenphotography.com";
 };

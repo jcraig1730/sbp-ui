@@ -7,9 +7,9 @@ import {
   Photo,
   User,
 } from "./dtoTypes";
-import { getUiUrl } from "@/utils";
+import { getApiUrl } from "@/utils";
 
-const apiUrl = getUiUrl();
+const apiUrl = getApiUrl();
 
 export const createAppointment = async (
   dto: CreateEventDto

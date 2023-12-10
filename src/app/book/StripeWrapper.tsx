@@ -7,14 +7,19 @@ import BookPage from "./BookPage";
 import { Provider, useDispatch } from "react-redux";
 import store from "@/redux/store";
 import { useRouter, useSearchParams } from "next/navigation";
-import { getPaymentIntent, updatePaymentIntent, verifyToken } from "@/api";
+import {
+  createAppointment,
+  getPaymentIntent,
+  updatePaymentIntent,
+  verifyToken,
+} from "@/api";
 import { addToast } from "@/redux/slices/toast";
 import { v4 } from "uuid";
-import { getUiUrl } from "@/utils";
+import { CreateEventDto } from "@/api/dtoTypes";
+import { createPaymentSocket } from "@/websockets/payment.socket";
+import AppointmentConfirmation from "./AppointmentConfirmation";
 
 const stripePromise = loadStripe(process.env.STRIPE_KEY!);
-
-const baseReturnUrl = getUiUrl();
 
 const BookWrapper = (props: {
   selected: string;
@@ -48,7 +53,37 @@ const BookWrapper = (props: {
 
   const elements = useElements();
 
-  const [paymentComplete, setPaymentComplete] = useState(false);
+  const [paymentFormComplete, setPaymentFormComplete] = useState(false);
+
+  const [paymentSucceeded, setPaymentSucceeded] = useState(false);
+
+  const onPaymentSuccess = async () => {
+    dispatch(
+      addToast({
+        message: "Payment successful!",
+        type: "success",
+        id: v4(),
+      })
+    );
+
+    const appointment = await createAppointment({
+      start: selectedDate!.toString(),
+      summary: selectedPackage as CreateEventDto["summary"],
+      type: "standard",
+    });
+    setPaymentSucceeded(true);
+  };
+
+  const onPaymentFailure = () => {
+    setStep(() => 2);
+    dispatch(
+      addToast({
+        message: "Payment failed. Please try again.",
+        type: "error",
+        id: v4(),
+      })
+    );
+  };
 
   const nextClick = async () => {
     if (step === 0 && selectedPackage) {
@@ -60,7 +95,7 @@ const BookWrapper = (props: {
     if (step === 1 && selectedDate) {
       setStep((s) => s + 1);
     }
-    if (step === 2 && paymentComplete) {
+    if (step === 2 && paymentFormComplete) {
       setStep((s) => s + 1);
     }
     if (step === 3) {
@@ -73,14 +108,9 @@ const BookWrapper = (props: {
       )?.confirmPayment({
         clientSecret: props.intent!.clientSecret,
         elements: elements || undefined,
-        confirmParams: {
-          return_url: `${baseReturnUrl}purchase-complete?start=${selectedDate}&package=${selectedPackage}&type=${
-            ["package 1", "package 2", "package 3"].includes(selectedPackage)
-              ? "standard"
-              : "infant"
-          }`,
-        },
+        redirect: "if_required",
       });
+
       if (result?.error) {
         setStep(2);
         setProcessing(false);
@@ -92,6 +122,12 @@ const BookWrapper = (props: {
             id: v4(),
           })
         );
+      } else {
+        createPaymentSocket(
+          props.intent.id,
+          onPaymentSuccess,
+          onPaymentFailure
+        );
       }
     }
   };
@@ -100,6 +136,9 @@ const BookWrapper = (props: {
       setStep((s) => s - 1);
     }
   };
+
+  if (paymentSucceeded && selectedDate && selectedPackage)
+    return <AppointmentConfirmation start={selectedDate.toString()} />;
 
   return (
     <BookPage
@@ -111,8 +150,8 @@ const BookWrapper = (props: {
       selectedDate={selectedDate}
       selectedPackage={selectedPackage}
       processing={processing}
-      paymentFormComplete={paymentComplete}
-      setPaymentFormComplete={setPaymentComplete}
+      paymentFormComplete={paymentFormComplete}
+      setPaymentFormComplete={setPaymentFormComplete}
       error={error}
     />
   );

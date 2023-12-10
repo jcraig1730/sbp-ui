@@ -12,6 +12,7 @@ const AccountManager = () => {
   const [loading, setLoading] = useState(true);
   const authData = useSelector((state: RootState) => state.auth);
   const dispatch = useDispatch();
+  const avatarUrl = authData.user?.albums[0]?.photos[0]?.url;
   useEffect(() => {
     (async () => {
       try {
@@ -32,10 +33,10 @@ const AccountManager = () => {
   if (!authData.isAuthenticated)
     return (
       <div>
-        <Link href="/register" className="btn btn-ghost text-secondary">
+        <Link href="/register" className="btn btn-secondary text-accent">
           Sign up
         </Link>
-        <Link href="/login" className="btn btn-secondary text-primary">
+        <Link href="/login" className="btn btn-accent text-secondary ml-1">
           Login
         </Link>
       </div>
@@ -43,7 +44,7 @@ const AccountManager = () => {
 
   return (
     <Link passHref href="/account">
-      <div className={"flex items-center btn btn-ghost"}>
+      <div className={"flex items-center btn btn-accent text-secondary"}>
         <div>{authData.user?.profile?.firstName}</div>
         <label tabIndex={0} className="avatar">
           <div className="w-8 rounded-full relative">
@@ -51,7 +52,10 @@ const AccountManager = () => {
               alt={"avatar"}
               fill
               className="object-contain"
-              src="https://alumni.engineering.utoronto.ca/files/2022/05/Avatar-Placeholder-400x400-1.jpg"
+              src={
+                avatarUrl ||
+                "https://alumni.engineering.utoronto.ca/files/2022/05/Avatar-Placeholder-400x400-1.jpg"
+              }
             />
           </div>
         </label>
